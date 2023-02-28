@@ -14,6 +14,7 @@
                             <tr>
                                 <th>Vardas </th>
                                 <th>Pavarde</th>
+                                <th>Mašinos</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -24,6 +25,13 @@
                                     <tr>
                                     <td>{{$owner->name}}</td>
                                     <td>{{$owner->surname}}</td>
+
+                                        <td>
+                                            @foreach($owner->cars as $car)
+                                             {{ $car->brand}}  {{ $car->model}} <br>
+                                            @endforeach
+                                        </td>
+
                                         <td class="col-md-3"><a class="btn btn-info" href="{{route("owners.update", $owner->id)}}">Redaguoti</a>
                                         <a class="btn btn-danger" href="{{route("owners.delete", $owner->id)}}">Redaguoti</a></td>
                                     </tr>

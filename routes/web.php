@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\OwnersController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,8 @@ Route::post('/owners/store',[OwnersController::class,'store'])->name('owners.sto
 Route::get('/owners/{id}/update',[OwnersController::class,'update'])->name("owners.update");
 Route::post("/owners/{id}/save",[OwnersController::class,'save'])->name('owners.save');
 Route::get('/owners/{id}/delete',[OwnersController::class,'delete'])->name("owners.delete");
+
+Route::resource('cars', CarController::class);
 
 
 Auth::routes();
