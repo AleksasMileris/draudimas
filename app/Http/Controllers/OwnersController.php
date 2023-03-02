@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class OwnersController extends Controller
 {
+    public function __construct()
+    {
+       // $this->middleware('checkAdmin');
+    }
+
     public function index(){
         $owners=Owners::all();
         return view("owners.list",[

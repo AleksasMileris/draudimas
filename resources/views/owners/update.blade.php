@@ -19,6 +19,21 @@
                             <button class="btn btn-success mt-2">Pridėti</button>
                         </form>
                     </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Turimos mošinos</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach($owner->cars as $car)
+                                <tr> <td>{{ $car->brand}}  {{ $car->model}} </td></tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
