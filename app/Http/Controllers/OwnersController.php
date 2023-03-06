@@ -12,10 +12,21 @@ class OwnersController extends Controller
        // $this->middleware('checkAdmin');
     }
 
-    public function index(){
-        $owners=Owners::all();
+    public function index(Request $request){
+        $name=$request->session()->get('owner_name');
+        $surname=$request->session()->get('owner_surname');
+        $owners=Owners::with('cars');
+        if($name!= null){
+            $owners->where('name','like',"%$name%");
+        }
+        if($surname !=null){
+            $owners->where('surname','like',"%$surname%");
+        }
+        $owners= $owners->orderBy('name')->get();
         return view("owners.list",[
-            "owners"=>$owners
+            "owners"=>$owners,
+            'name'=>$name,
+            'surname'=>$surname
         ]);
     }
 
@@ -47,5 +58,10 @@ class OwnersController extends Controller
     public function delete($id){
         Owners::destroy($id);
         return redirect()->route("index");
+    }
+    public function search(Request $request){
+        $request->session()->put('owner_name',$request->name);
+        $request->session()->put('owner_surname',$request->surname);
+       return redirect()->route('index');
     }
 }
