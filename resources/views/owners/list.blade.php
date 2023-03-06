@@ -8,9 +8,9 @@
                     <div class="card-header">Savininkai</div>
 
                     <div class="card-body">
-{{--                        @if(Auth::user()->user_type !== null && Auth::user()->user_type == 'admin')--}}
+                        @if(Auth::user() !== null && Auth::user()->user_type == 'admin')
                         <a class="btn btn-success float-end" href="{{route("owners.create")}}">Pridėti savininką</a>
-{{--                        @endif--}}
+                        @endif
 
                         <form class="" method="post" action="{{route('owners.search')}}">
                             @csrf

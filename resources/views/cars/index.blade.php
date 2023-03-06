@@ -9,11 +9,11 @@
                     <div class="card-header">Mašinos</div>
 
                     <div class="card-body">
-{{--                        @if(Auth::user()->user_type !== null && Auth::user()->user_type == 'admin')--}}
+                        @if(Auth::user() !== null && Auth::user()->user_type == 'admin')
 
 
                         <a class="btn btn-success float-end" href="{{route("cars.create")}}">Pridėti savininką</a>
-{{--                        @endif--}}
+                        @endif
 
 
                         <form  method="post" action="{{route('cars.search')}}">
@@ -36,13 +36,13 @@
 
                             <div>
                                 <label class="form-label">Savininkas</label>
-                                <select  class="form-select">
-
+                                <select  name="using" class="form-select">
+                                    <option>...</option>
                                     @foreach($owners as $owner)
 
 
 
-                                            <option name="using" value="{{$owner->id}}"> {{$owner->name}} {{$owner->surname}}</option>
+                                            <option value="{{$owner->id}}"> {{$owner->name}} {{$owner->surname}}</option>
 
 
 
